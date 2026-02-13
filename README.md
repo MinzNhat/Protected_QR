@@ -13,6 +13,15 @@ Fixed-Geometry Physical-Digital QR Generator. This service creates a determinist
 - Center pattern crop for verification is 154x154 px.
 - Verification thresholds: authentic > 0.70, fake < 0.55.
 
+## Sample QR
+
+The service embeds a unique, copy-sensitive "Center Pattern" into a standard QR code. This pattern acts as a physical-digital fingerprint.
+
+<div align="center">
+  <img src="assets/qr-sample.png" alt="Sample Protected QR" width="500" style="max-width: 100%;">
+  <p><i>Figure 1: Protected QR with embedded center pattern</i></p>
+</div>
+
 ## Architecture
 
 - **Node.js API**: REST interface, validation, token packing, audit storage.
