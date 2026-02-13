@@ -218,6 +218,12 @@ def extract_center_pattern_variants(
         width_b = np.linalg.norm(rect[1] - rect[0])
         height_a = np.linalg.norm(rect[1] - rect[2])
         height_b = np.linalg.norm(rect[0] - rect[3])
+        top_edge = rect[1] - rect[0]
+        angle = abs(np.degrees(np.arctan2(top_edge[1], top_edge[0])))
+        max_dim = max(width_a, width_b, height_a, height_b, 1.0)
+        aspect_skew = abs(width_a - height_a) / max_dim
+        use_axis = angle < 5.0 and aspect_skew < 0.05
+
         size = int(max(width_a, width_b, height_a, height_b))
         size = max(size, expected_size_px + 20)
         dst = np.array(
@@ -258,6 +264,9 @@ def extract_center_pattern_variants(
             patterns.append(
                 ("warp", _extract_center_from_region(warped, scaled_expected))
             )
+
+        if use_axis:
+            patterns.append(("axis", extract_center_pattern(image_bgr, expected_size_px)))
 
     # Only fall back to axis crop when warp-based extraction is unavailable.
     if not patterns:

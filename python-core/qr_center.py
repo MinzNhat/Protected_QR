@@ -5,23 +5,32 @@ Deterministic micro-pattern helpers used to draw the copy-sensitive graphic
 inside the QR center.
 """
 
+import hashlib
 import numpy as np
 from PIL import Image, ImageDraw
 
 
-def _bits_from_hex(hexstr: str) -> np.ndarray:
+def _expand_bits(sig_hex: str, needed_bits: int) -> np.ndarray:
     """
-    Convert hex string to a flat bit array for deterministic rendering.
+    Expand a hash digest into a deterministic bitstream.
 
     Args:
-        hexstr: Hex string derived from a token hash.
+        sig_hex: Hex string derived from a token hash.
+        needed_bits: Number of bits required by the pattern grid.
 
     Returns:
-        Numpy array of 0/1 bits.
+        Numpy array of 0/1 bits with length needed_bits.
     """
-    b = bytes.fromhex(hexstr)
-    bits = np.unpackbits(np.frombuffer(b, dtype=np.uint8))
-    return bits
+    blocks = []
+    counter = 0
+    while len(blocks) * 256 < needed_bits:
+        payload = f"{sig_hex}:{counter}".encode("utf-8")
+        digest = hashlib.sha256(payload).digest()
+        blocks.append(np.unpackbits(np.frombuffer(digest, dtype=np.uint8)))
+        counter += 1
+
+    bits = np.concatenate(blocks)
+    return bits[:needed_bits]
 
 
 def generate_micro_qr_pil(
@@ -57,11 +66,8 @@ def generate_micro_qr_pil(
     margin = quiet + max(0, (inner_size - used_size) // 2)
 
     # Expand bits to fill the full module grid deterministically.
-    bits = _bits_from_hex(sig_hex)
     needed = actual_modules * actual_modules
-    if bits.size < needed:
-        reps = (needed + bits.size - 1) // bits.size
-        bits = np.tile(bits, reps)[:needed]
+    bits = _expand_bits(sig_hex, needed)
 
     idx = 0
     for r in range(actual_modules):
