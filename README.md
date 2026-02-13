@@ -248,10 +248,30 @@ See [.env.example](.env.example).
 - Place the API behind TLS and a rate limiter.
 - Use a private network for internal Python core access.
 
+## Bug Reports
+
+Found a bug? Please report it using our [bug report template](./.github/ISSUE_TEMPLATE/bug_report.md).
+
+## Feature Requests
+
+Have an idea for a new feature? Submit a [feature request](./.github/ISSUE_TEMPLATE/feature_request.md).
+
 ## License
 
-MIT. See [LICENSE](LICENSE).
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+- **Issues**: [GitHub Issues](https://github.com/MinzNhat/Protected_QR/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/MinzNhat/Protected_QR/discussions)
+- **Email**: nhat.dang2004.cv@gmail.com
 
 ---
 
-Built by MinzNhat with luv <3.
+<div align="center">
+  <p>Made with care by MinzNhat</p>
+  <p>
+    <a href="https://github.com/MinzNhat/Protected_QR">Star us on GitHub</a> •
+    <a href="https://yourdomain.com">Visit Website</a>
+  </p>
+</div>

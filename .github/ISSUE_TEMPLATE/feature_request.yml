@@ -1,0 +1,46 @@
+name: Feature Request
+about: Propose a new capability for the Protected QR Service
+labels: [enhancement]
+assignees: []
+body:
+    - type: markdown
+      attributes:
+          value: "Describe the problem and a concise proposal. Focus on impact and system integrity."
+    - type: textarea
+      id: problem_statement
+      attributes:
+          label: Problem statement
+          description: What problem are you trying to solve?
+          placeholder: Explain the user or system need
+      validations:
+          required: true
+    - type: textarea
+      id: phygital_solution
+      attributes:
+          label: Proposed Phygital solution
+          description: Describe the physical-digital behavior or flow
+          placeholder: Outline the proposed solution and any constraints
+      validations:
+          required: true
+    - type: textarea
+      id: integrity_impact
+      attributes:
+          label: Impact on system integrity
+          description: Security, verification robustness, and operational risks
+          placeholder: Note any risks, mitigations, or required safeguards
+      validations:
+          required: true
+    - type: textarea
+      id: alternatives
+      attributes:
+          label: Alternatives considered
+          placeholder: Other approaches you evaluated
+      validations:
+          required: false
+    - type: textarea
+      id: additional_context
+      attributes:
+          label: Additional context
+          placeholder: Links, mockups, or related references
+      validations:
+          required: false

@@ -1,0 +1,71 @@
+name: Bug Report
+about: Report a defect in the Protected QR Service
+labels: [bug]
+assignees: []
+body:
+    - type: markdown
+      attributes:
+          value: "Please provide clear, reproducible details to help us diagnose the issue."
+    - type: input
+      id: os
+      attributes:
+          label: OS
+          description: Operating system and version
+          placeholder: macOS 14.4, Ubuntu 22.04, Windows 11
+      validations:
+          required: true
+    - type: input
+      id: node_version
+      attributes:
+          label: Node.js version
+          placeholder: v18.20.2
+      validations:
+          required: true
+    - type: input
+      id: python_version
+      attributes:
+          label: Python version
+          placeholder: 3.11.8
+      validations:
+          required: true
+    - type: textarea
+      id: steps
+      attributes:
+          label: Steps to reproduce
+          description: Provide exact steps and input payloads
+          placeholder: |
+              1. Start services with docker-compose up -d --build
+              2. POST /api/v1/qr/generate with payload ...
+              3. Verify with image ...
+      validations:
+          required: true
+    - type: textarea
+      id: expected
+      attributes:
+          label: Expected behavior
+          placeholder: Describe what you expected to happen
+      validations:
+          required: true
+    - type: textarea
+      id: actual
+      attributes:
+          label: Actual behavior
+          placeholder: Describe what actually happened
+      validations:
+          required: true
+    - type: textarea
+      id: protected_qr_image
+      attributes:
+          label: Protected QR image
+          description: Attach or link the QR image that caused the issue
+          placeholder: Drag and drop the image here, or paste a link
+      validations:
+          required: true
+    - type: textarea
+      id: logs
+      attributes:
+          label: Logs and traces
+          description: Include relevant API or service logs
+          render: shell
+      validations:
+          required: false
