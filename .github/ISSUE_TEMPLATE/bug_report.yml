@@ -1,5 +1,5 @@
 name: Bug Report
-about: Report a defect in the Protected QR Service
+description: Report a defect in the Protected QR Service
 labels: [bug]
 assignees: []
 body:
