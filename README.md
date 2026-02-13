@@ -15,11 +15,23 @@ Fixed-Geometry Physical-Digital QR Generator. This service creates a determinist
 
 ## Visual Demos
 
-The service embeds a unique, copy-sensitive "Center Pattern" into a standard QR code. This pattern acts as a physical-digital fingerprint.
+The service embeds a unique, copy-sensitive "Center Pattern" into a standard QR code. This pattern acts as a physical-digital fingerprint, distinguishing it from standard, easily copyable QRs.
 
 <div align="center">
-  <img src="assets/qr-sample.png" alt="Sample Protected QR" width="500" style="max-width: 100%;">
-  <p><i>Figure 1: Protected QR with embedded center pattern</i></p>
+  <table>
+    <tr>
+      <td align="center">
+        <img src="assets/qr-sample.png" width="250" alt="Standard Standard QR Code">
+        <br />
+        <sub><b>Figure 1A: Standard Generic QR</b><br>(Easily cloned)</sub>
+      </td>
+      <td align="center">
+        <img src="assets/qr-service-sample.png" width="250" alt="Protected QR with Center Pattern">
+        <br />
+        <sub><b>Figure 1B: Protected QR</b><br>(Copy-sensitive embedded pattern)</sub>
+      </td>
+    </tr>
+  </table>
 </div>
 
 ## Architecture
