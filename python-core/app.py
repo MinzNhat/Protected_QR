@@ -14,16 +14,18 @@ from pydantic import BaseModel
 
 try:
     from qr_protected import generate_protected_qr
-    from qr_decoder import (
+        from qr_decoder import (
         decode_qr_data,
-        extract_center_pattern,
+        extract_center_pattern_variants,
+        get_qr_module_count,
         verify_pattern_authenticity,
-    )
+        )
 except ImportError:
     from .qr_protected import generate_protected_qr
     from .qr_decoder import (
         decode_qr_data,
-        extract_center_pattern,
+        extract_center_pattern_variants,
+        get_qr_module_count,
         verify_pattern_authenticity,
     )
 
@@ -118,9 +120,22 @@ async def verify_qr_endpoint(req: VerifyRequest):
         if not token:
             return {"token": None, "is_authentic": False, "confidence_score": 0.0}
 
-        # Extract the fixed-size center pattern and verify against the token hash.
-        pattern = extract_center_pattern(img, expected_size_px=154)
-        verify = verify_pattern_authenticity(pattern, token, pattern_modules=56)
+        # Extract pattern variants and keep the highest confidence.
+        module_count = get_qr_module_count(token)
+        patterns = extract_center_pattern_variants(
+            img,
+            expected_size_px=154,
+            module_count=module_count,
+            border_modules=1,
+            pattern_size_modules=14.0,
+        )
+        verify = None
+        for _, pattern in patterns:
+            candidate = verify_pattern_authenticity(
+                pattern, token, pattern_modules=56
+            )
+            if verify is None or candidate["confidence_score"] > verify["confidence_score"]:
+                verify = candidate
 
         return {
             "token": token,
