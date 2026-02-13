@@ -250,11 +250,11 @@ See [.env.example](.env.example).
 
 ## Bug Reports
 
-Found a bug? Please report it using our [bug report template](./.github/ISSUE_TEMPLATE/bug_report.yml).
+Found a bug? Please report it using our [Bug Report Form](https://github.com/MinzNhat/Protected_QR/issues/new?template=bug_report.yml).
 
 ## Feature Requests
 
-Have an idea for a new feature? Submit a [feature request](./.github/ISSUE_TEMPLATE/feature_request.yml).
+Have an idea for a new feature? Submit a [Feature Request Form](https://github.com/MinzNhat/Protected_QR/issues/new?template=feature_request.yml).
 
 ## License
 
