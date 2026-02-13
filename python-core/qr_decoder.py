@@ -228,9 +228,10 @@ def extract_center_pattern_variants(
         warped = cv2.warpPerspective(image_bgr, matrix, (size, size))
         scaled_expected = max(24, int(expected_size_px * size / 600))
         if module_count:
+            # Try both border assumptions: detector bbox may or may not include quiet zone.
             patterns.append(
                 (
-                    "warp-grid",
+                    "warp-grid-b1",
                     _extract_center_from_warp(
                         warped,
                         module_count,
@@ -238,6 +239,20 @@ def extract_center_pattern_variants(
                         pattern_size_modules,
                     ),
                 )
+            )
+            patterns.append(
+                (
+                    "warp-grid-b0",
+                    _extract_center_from_warp(
+                        warped,
+                        module_count,
+                        0,
+                        pattern_size_modules,
+                    ),
+                )
+            )
+            patterns.append(
+                ("warp", _extract_center_from_region(warped, scaled_expected))
             )
         else:
             patterns.append(

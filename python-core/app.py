@@ -14,12 +14,12 @@ from pydantic import BaseModel
 
 try:
     from qr_protected import generate_protected_qr
-        from qr_decoder import (
+    from qr_decoder import (
         decode_qr_data,
         extract_center_pattern_variants,
         get_qr_module_count,
         verify_pattern_authenticity,
-        )
+    )
 except ImportError:
     from .qr_protected import generate_protected_qr
     from .qr_decoder import (
