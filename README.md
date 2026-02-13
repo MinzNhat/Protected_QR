@@ -13,7 +13,7 @@ Fixed-Geometry Physical-Digital QR Generator. This service creates a determinist
 - Center pattern crop for verification is 154x154 px.
 - Verification thresholds: authentic > 0.70, fake < 0.55.
 
-## Sample QR
+## Visual Demos
 
 The service embeds a unique, copy-sensitive "Center Pattern" into a standard QR code. This pattern acts as a physical-digital fingerprint.
 
